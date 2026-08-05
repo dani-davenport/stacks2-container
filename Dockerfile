@@ -49,9 +49,6 @@ RUN cd /tmp \
 
 WORKDIR /data
 
-RUN bash --version \
-    && process_radtags --version \
-    && gstacks --version \
-    && populations --version
+RUN process_radtags --help
 
 CMD ["/bin/bash"]
