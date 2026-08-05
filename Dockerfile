@@ -49,6 +49,6 @@ RUN cd /tmp \
 
 WORKDIR /data
 
-RUN process_radtags --help
+RUN command -v process_radtags
 
 CMD ["/bin/bash"]
