@@ -33,16 +33,16 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     libgsl-dev \
     && rm -rf /var/lib/apt/lists/*
 
-WORKDIR /tmp
+ARG STACKS_VERSION=2.68
 
-RUN wget --no-verbose \
-        "https://catchenlab.life.illinois.edu/stacks/source/stacks-${STACKS_VERSION}.tar.gz" \
+COPY stacks-${STACKS_VERSION}.tar.gz /tmp/
+
+RUN cd /tmp \
     && tar -xzf "stacks-${STACKS_VERSION}.tar.gz" \
     && cd "stacks-${STACKS_VERSION}" \
     && ./configure \
     && make -j"$(nproc)" \
     && make install \
-    && cd / \
     && rm -rf \
         "/tmp/stacks-${STACKS_VERSION}" \
         "/tmp/stacks-${STACKS_VERSION}.tar.gz"
